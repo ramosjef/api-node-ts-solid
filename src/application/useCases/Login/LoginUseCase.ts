@@ -2,14 +2,15 @@ import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
 import { ILoginUseCase } from "./ILoginUseCase"
 import { ILoginRequest } from "./ILoginRequest"
+import { ILoginResponse } from "./ILoginResponse"
 import { injectable, inject } from "inversify"
-import { IUsersRepository } from "../../../domain/interfaces/repositories/IUsersRepository"
-import TYPES from "../../../domain/constants/types"
+import { IUsersRepository } from "../../../domain/users/IUsersRepository"
+import TYPES from "../../../domain/core/constants/types"
 import { UserNotFoundException } from "../../exceptions/UserNotFoundException"
 import { PasswordsDontMatchException } from "../../exceptions/PasswordsDontMatchException"
-import { MissingParameterException } from "../../exceptions/MissingParameterException"
-import { IUserSessionRepository } from "../../../domain/interfaces/repositories/IUserSessionRepository"
-import { UserSession } from "../../../domain/entities/UserSession"
+import { IUserSessionRepository } from "../../../domain/userSessions/IUserSessionRepository"
+import { UserSession } from "../../../domain/userSessions/UserSession"
+import LoginRequestValidation from "./LoginRequestValidation"
 
 @injectable()
 export class LoginUseCase implements ILoginUseCase {
@@ -19,12 +20,11 @@ export class LoginUseCase implements ILoginUseCase {
         @inject(TYPES.UserSessionRepository) private readonly _userSessionRepository: IUserSessionRepository,
     ) { }
 
-    async Execute(_req: ILoginRequest): Promise<UserSession> {
+    async Execute(_req: ILoginRequest): Promise<ILoginResponse> {
 
-        if (!_req.email || !_req.password)
-            throw new MissingParameterException("email or password is missing")
+        await LoginRequestValidation.validateAsync(_req);
 
-        let user = await this._usersRepository.Find(p => p.email == _req.email)
+        let user = await this._usersRepository.FindByEmail(_req.email)
         if (!user) throw new UserNotFoundException()
 
         var doesPasswordMatch = await bcrypt.compare(_req.password, user.password)
@@ -40,10 +40,10 @@ export class LoginUseCase implements ILoginUseCase {
         })
         userSession.id = await this._userSessionRepository.Create(userSession);
 
-        return userSession;
+        return token
     }
 
-    private GenerateToken(object: { id: string }) {
+    private GenerateToken(object: { id: string }): ILoginResponse {
         let time = new Date().getTime() + (+process.env.TOKEN_EXPIRES_IN * 60 * 60 * 1000)
         let expiresIn = new Date().setTime(time)
         let token = jwt.sign(object, process.env.SECRET, { expiresIn: expiresIn })

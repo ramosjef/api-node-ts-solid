@@ -1,5 +1,5 @@
-import { UserSession } from "../../../domain/entities/UserSession";
-import { IUseCase } from "../../../domain/interfaces/core/IUseCase";
+import { IUseCase } from "../../../domain/core/interfaces/IUseCase";
 import { ILoginRequest } from "./ILoginRequest";
+import { ILoginResponse } from "./ILoginResponse";
 
-export interface ILoginUseCase extends IUseCase<ILoginRequest, UserSession> { }
+export interface ILoginUseCase extends IUseCase<ILoginRequest, ILoginResponse> { }
