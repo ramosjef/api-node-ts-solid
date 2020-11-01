@@ -7,9 +7,9 @@
 
 # Getting Started
 ### 1. Clone the repository
-    - SSH : git clone 
+    - SSH : git clone git@github.com:ramosjef/api-node-ts-solid.git
     
-    - HTTPS : git clone 
+    - HTTPS : git clone https://github.com/ramosjef/api-node-ts-solid.git
 
 ### 2. Install dependencies
     "yarn" or "npm i" 
