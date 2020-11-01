@@ -1,5 +1,5 @@
 import { interfaces } from "inversify-express-utils";
-import { User } from "./User";
+import { User } from "../../users/User";
 
 export class Principal implements interfaces.Principal {
     details: User;
@@ -9,7 +9,7 @@ export class Principal implements interfaces.Principal {
     }
 
     isAuthenticated(): Promise<boolean> {
-        let res: boolean = this.details && this.details.id != "";
+        let res = (this.details && this.details.id != null && this.details.id != undefined);
         return Promise.resolve(res)
     }
 

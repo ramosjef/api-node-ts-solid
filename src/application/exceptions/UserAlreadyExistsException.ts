@@ -1,5 +1,6 @@
 export class UserAlreadyExistsException extends Error {
-    constructor(msg?: string) {
-        super(msg || "the user you´re trying to create already exists.")
+    constructor() {
+        super("user already exists.")
+        this.stack = this.message;
     }
 }

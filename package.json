@@ -1,26 +1,31 @@
 {
-  "name": "soofia",
+  "name": "node-ts-starter",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
     "start": "tsnd --transpile-only --respawn --ignore-watch node_modules src/server.ts",
-    "test": "mocha -r ts-node/register --require reflect-metadata/Reflect **/**/*.spec.ts --timeout 1000"
+    "test": "mocha -r ts-node/register --require reflect-metadata/Reflect **/**/*.spec.ts --timeout 10000",
+    "build": "tsc",
+    "doc": "apidoc -i src/ -o doc/"
   },
   "dependencies": {
     "bcrypt": "^5.0.0",
     "dotenv-safe": "^8.2.0",
     "express": "^4.17.1",
-    "google-auth-library": "^6.1.0",
     "helmet": "^4.1.0",
     "inversify": "^5.0.1",
     "inversify-express-utils": "^6.3.2",
+    "joi": "^17.3.0",
     "jsonwebtoken": "^8.5.1",
+    "mongodb": "^3.6.2",
+    "morgan": "^1.10.0",
     "nodemailer": "^6.4.11",
     "reflect-metadata": "^0.1.13",
     "uuidv4": "^6.2.3"
   },
   "devDependencies": {
+    "@types/apidoc": "^0.22.2",
     "@types/bcrypt": "^3.0.0",
     "@types/chai": "^4.2.12",
     "@types/dotenv-safe": "^8.1.1",
@@ -28,12 +33,22 @@
     "@types/inversify-express-utils": "^2.0.0",
     "@types/jsonwebtoken": "^8.5.0",
     "@types/mocha": "^8.0.3",
-    "@types/node": "^14.11.2",
+    "@types/mongodb": "^3.5.31",
     "@types/nodemailer": "^6.4.0",
+    "apidoc": "^0.25.0",
     "chai": "^4.2.0",
     "mocha": "^8.1.2",
     "nyc": "^15.1.0",
     "ts-node-dev": "^1.0.0-pre.60",
     "typescript": "^4.0.2"
+  },
+  "apidoc": {
+    "name": "node typescript starter",
+    "version": "1.0.0",
+    "description": "node typescript starter api",
+    "apidoc": {
+      "title": "node typescript starter api",
+      "url": "https://api.github.com/v1"
+    }
   }
 }

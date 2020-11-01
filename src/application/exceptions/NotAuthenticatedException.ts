@@ -1,5 +1,6 @@
 export class NotAuthenticatedException extends Error {
     constructor() {
-        super('User not authenticated')
+        super('user not authenticated')
+        this.stack = this.message
     }
 }

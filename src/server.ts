@@ -1,25 +1,29 @@
 import express from 'express'
 import "reflect-metadata";
+import 'dotenv/config'
 import { InversifyExpressServer } from "inversify-express-utils";
 import { Container } from 'inversify';
-import { bindings } from './inversify.config';
+import { bindings as bindings_dev } from './infrastructure/config/inversify.config.dev';
+import { bindings as bindings_prod } from './infrastructure/config/inversify.config.prod';
 import helmet from "helmet";
-import dotenv from 'dotenv-safe'
+import morgan from 'morgan'
 import { AuthProvider } from './infrastructure/providers/AuthProvider';
-
-dotenv.config();
 
 (async () => {
     const container = new Container()
-    await container.loadAsync(bindings)
+    await container.loadAsync(
+        process.env.NODE_ENV == 'dev' ?
+            bindings_dev :
+            bindings_prod)
 
     const app = new InversifyExpressServer(container, null, null, null, AuthProvider)
 
     app.setConfig((app) => {
         // Disable default cache
         app.set("etag", false);
-        app.use(express.json())
+        app.use(express.json());
         app.use(helmet());
+        app.use(morgan('dev'));
     })
 
     const port = process.env.PORT || 3333

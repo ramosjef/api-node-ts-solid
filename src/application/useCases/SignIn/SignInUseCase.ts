@@ -1,25 +1,30 @@
-import { IUsersRepository } from "../../../domain/interfaces/repositories/IUsersRepository";
-import { IMailProvider } from "../../../domain/interfaces/providers/IMailProvider";
+import { IUsersRepository } from "../../../domain/users/IUsersRepository";
 import { ISignInRequest } from "./ISignInRequest";
-import { User } from "../../../domain/entities/User";
+import { User } from "../../../domain/users/User";
 import { ISignInUseCase } from "./ISignInUseCase";
 import { injectable, inject } from "inversify";
-import TYPES from "../../../domain/constants/types";
+import TYPES from "../../../domain/core/constants/types";
 import * as bcrypt from "bcrypt"
-import { MissingParameterException } from "../../exceptions/MissingParameterException";
 import { UserAlreadyExistsException } from "../../exceptions/UserAlreadyExistsException";
+import SigninRequestValidation from "./SignInRequestValidation";
 
 @injectable()
 export class SignInUseCase implements ISignInUseCase {
-    @inject(TYPES.UsersRepository) private readonly _usersRepository: IUsersRepository
-    @inject(TYPES.MailProvider) private readonly _mailProvider: IMailProvider
+
+    private readonly _usersRepository: IUsersRepository
+
+    constructor(
+        @inject(TYPES.UsersRepository) usersRepository: IUsersRepository
+    ) {
+        this._usersRepository = usersRepository;
+    }
+
 
     async Execute(request: ISignInRequest): Promise<void> {
 
-        if (!request.email || !request.name || !request.password)
-            throw new MissingParameterException();
+        await SigninRequestValidation.validateAsync(request, {});
 
-        let userAreadyExists = await this._usersRepository.Find(p => p.email == request.email)
+        let userAreadyExists = await this._usersRepository.FindByEmail(request.email)
         if (userAreadyExists)
             throw new UserAlreadyExistsException()
 
@@ -27,19 +32,6 @@ export class SignInUseCase implements ISignInUseCase {
 
         let user = new User(request)
         await this._usersRepository.Create(user)
-
-        //await this._mailProvider.SendMail({
-        //    to: {
-        //        name: user.name,
-        //        email: user.email
-        //    },
-        //    from: {
-        //        name: "Equipe do meu app",
-        //        email: "welcome@meuapp.com"
-        //    },
-        //    subject: "Seja bem-vindo à plataforma",
-        //    body: "<h1>Corpo do email de boas vindas.</h1>"
-        //})
     }
 
     private async CryptPassword(password: string): Promise<string> {
