@@ -4,11 +4,12 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "yarn lint --fix && tsnd --transpile-only --respawn --ignore-watch node_modules -r tsconfig-paths/register src/server.ts",
+    "start": "yarn lint && tsnd --transpile-only --respawn --ignore-watch node_modules -r tsconfig-paths/register src/server.ts",
     "test": "mocha -r ts-node/register --require reflect-metadata/Reflect **/**/*.spec.ts -r tsconfig-paths/register --timeout 10000",
-    "build": "yarn lint --fix && tsc",
+    "build": "yarn lint-fix && tsc",
     "doc": "apidoc -i src/ -o doc/",
-    "lint": "eslint . --ext .ts"
+    "lint": "eslint . --ext .ts",
+    "lint-fix": "eslint . --ext .ts --fix"
   },
   "dependencies": {
     "bcrypt": "^5.0.0",
