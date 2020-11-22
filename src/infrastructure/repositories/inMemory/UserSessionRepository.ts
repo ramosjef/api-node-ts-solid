@@ -1,9 +1,9 @@
-import { UserSession } from "../../../domain/userSessions/UserSession";
-import { IUserSessionRepository } from "../../../domain/userSessions/IUserSessionRepository";
+import { UserSession } from "@domain/userSessions/UserSession";
+import { IUserSessionRepository } from "@domain/userSessions/IUserSessionRepository";
 import { inject, injectable } from "inversify";
-import TYPES from "../../../domain/core/constants/types";
-import { IGenericRepository } from "../../../domain/core/interfaces/IGenericRepository";
-import { IGenericRepositoryFactory } from "../../../domain/core/interfaces/IGenericRepositoryFactory";
+import TYPES from "@domain/core/constants/types";
+import { IGenericRepository } from "@domain/core/interfaces/IGenericRepository";
+import { IGenericRepositoryFactory } from "@domain/core/interfaces/IGenericRepositoryFactory";
 
 @injectable()
 export class UserSessionsRepository implements IUserSessionRepository {

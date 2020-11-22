@@ -1,12 +1,12 @@
 import 'mocha'
 import 'dotenv/config'
 import { expect } from 'chai';
-import { ISignInUseCase } from '../../application/useCases/SignIn/ISignInUseCase';
-import { bindings } from '../../infrastructure/config/inversify.config.dev';
+import { ISignInUseCase } from '@application/useCases/SignIn/ISignInUseCase';
+import { bindings } from '@config/inversify.config.dev';
 import { Container } from 'inversify';
-import TYPES from '../../domain/core/constants/types';
-import { ILoginUseCase } from '../../application/useCases/Login/ILoginUseCase';
-import { UserNotFoundException } from '../../application/exceptions/UserNotFoundException';
+import TYPES from '@domain/core/constants/types';
+import { ILoginUseCase } from '@application/useCases/Login/ILoginUseCase';
+import { UserNotFoundException } from '@application/exceptions/UserNotFoundException';
 import { ValidationError } from 'joi'
 
 let loginUsecase: ILoginUseCase

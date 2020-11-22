@@ -4,8 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "tsnd --transpile-only --respawn --ignore-watch node_modules src/server.ts",
-    "test": "mocha -r ts-node/register --require reflect-metadata/Reflect **/**/*.spec.ts --timeout 10000",
+    "start": "tsnd --transpile-only --respawn --ignore-watch node_modules -r tsconfig-paths/register src/server.ts",
+    "test": "mocha -r ts-node/register --require reflect-metadata/Reflect **/**/*.spec.ts -r tsconfig-paths/register --timeout 10000",
     "build": "tsc",
     "doc": "apidoc -i src/ -o doc/"
   },
@@ -34,12 +34,14 @@
     "@types/jsonwebtoken": "^8.5.0",
     "@types/mocha": "^8.0.3",
     "@types/mongodb": "^3.5.31",
+    "@types/morgan": "^1.9.2",
     "@types/nodemailer": "^6.4.0",
     "apidoc": "^0.25.0",
     "chai": "^4.2.0",
     "mocha": "^8.1.2",
     "nyc": "^15.1.0",
     "ts-node-dev": "^1.0.0-pre.60",
+    "tsconfig-paths": "^3.9.0",
     "typescript": "^4.0.2"
   },
   "apidoc": {

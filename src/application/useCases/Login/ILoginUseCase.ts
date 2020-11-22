@@ -1,4 +1,4 @@
-import { IUseCase } from "../../../domain/core/interfaces/IUseCase";
+import { IUseCase } from "@domain/core/interfaces/IUseCase";
 import { ILoginRequest } from "./ILoginRequest";
 import { ILoginResponse } from "./ILoginResponse";
 

@@ -3,11 +3,11 @@ import "reflect-metadata";
 import 'dotenv/config'
 import { InversifyExpressServer } from "inversify-express-utils";
 import { Container } from 'inversify';
-import { bindings as bindings_dev } from './infrastructure/config/inversify.config.dev';
-import { bindings as bindings_prod } from './infrastructure/config/inversify.config.prod';
-import helmet from "helmet";
+import { bindings as bindings_dev } from '@config/inversify.config.dev';
+import { bindings as bindings_prod } from '@config/inversify.config.prod';
+import helmet from 'helmet';
 import morgan from 'morgan'
-import { AuthProvider } from './infrastructure/providers/AuthProvider';
+import { AuthProvider } from '@providers/AuthProvider';
 
 (async () => {
     const container = new Container()

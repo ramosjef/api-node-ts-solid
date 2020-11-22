@@ -1,9 +1,9 @@
-import { IUsersRepository } from "../../../domain/users/IUsersRepository";
+import { IUsersRepository } from "@domain/users/IUsersRepository";
 import { ISignInRequest } from "./ISignInRequest";
-import { User } from "../../../domain/users/User";
+import { User } from "@domain/users/User";
 import { ISignInUseCase } from "./ISignInUseCase";
 import { injectable, inject } from "inversify";
-import TYPES from "../../../domain/core/constants/types";
+import TYPES from "@domain/core/constants/types";
 import * as bcrypt from "bcrypt"
 import { UserAlreadyExistsException } from "../../exceptions/UserAlreadyExistsException";
 import SigninRequestValidation from "./SignInRequestValidation";

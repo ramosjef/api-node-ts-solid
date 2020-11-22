@@ -1,6 +1,6 @@
 import { injectable, unmanaged } from "inversify";
 import { v4 } from "uuid";
-import { IGenericRepository } from "../../../domain/core/interfaces/IGenericRepository";
+import { IGenericRepository } from "@domain/core/interfaces/IGenericRepository";
 import { InMemoryContext } from "./context/InMemoryContext";
 
 @injectable()

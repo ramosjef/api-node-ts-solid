@@ -1,6 +1,6 @@
 import { injectable, unmanaged } from "inversify";
 import { Collection, FilterQuery, OptionalId } from "mongodb";
-import { IGenericRepository } from "../../../domain/core/interfaces/IGenericRepository";
+import { IGenericRepository } from "@domain/core/interfaces/IGenericRepository";
 import { MongoDbContext } from "./context/MongoDbContext";
 
 @injectable()

@@ -1,5 +1,3 @@
-import { User } from "../users/User"
-
 export class UserSession {
     public id?: string
     public token?: string

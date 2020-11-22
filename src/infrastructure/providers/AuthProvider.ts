@@ -1,11 +1,11 @@
 import express from 'express'
 import { inject, injectable } from "inversify";
 import { interfaces } from "inversify-express-utils";
-import { Principal } from '../../domain/core/entities/Principal';
-import { IAuthProvider } from '../../domain/core/interfaces/IAuthProvider';
-import TYPES from '../../domain/core/constants/types';
-import { IUsersRepository } from '../../domain/users/IUsersRepository';
-import { IUserSessionRepository } from '../../domain/userSessions/IUserSessionRepository';
+import { Principal } from '@domain/core/entities/Principal';
+import { IAuthProvider } from '@domain/core/interfaces/IAuthProvider';
+import TYPES from '@domain/core/constants/types';
+import { IUsersRepository } from '@domain/users/IUsersRepository';
+import { IUserSessionRepository } from '@domain/userSessions/IUserSessionRepository';
 
 const authService = inject(TYPES.UsersRepository);
 
