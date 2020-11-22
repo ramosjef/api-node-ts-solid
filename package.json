@@ -4,9 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "yarn lint && tsnd --transpile-only --respawn --ignore-watch node_modules -r tsconfig-paths/register src/server.ts",
+    "start": "yarn lint --fix && tsnd --transpile-only --respawn --ignore-watch node_modules -r tsconfig-paths/register src/server.ts",
     "test": "mocha -r ts-node/register --require reflect-metadata/Reflect **/**/*.spec.ts -r tsconfig-paths/register --timeout 10000",
-    "build": "yarn lint && tsc",
+    "build": "yarn lint --fix && tsc",
     "doc": "apidoc -i src/ -o doc/",
     "lint": "eslint . --ext .ts"
   },
