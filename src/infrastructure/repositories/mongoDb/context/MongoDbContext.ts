@@ -6,15 +6,15 @@ export class MongoDbContext {
     private isConnected = false;
     private db: Db;
 
-    public async Collection<T extends Object>(name: string): Promise<Collection<T>> {
-        let db = await this.GetConnection()
+    public async Collection<T>(name: string): Promise<Collection<T>> {
+        const db = await this.GetConnection()
         return db.collection<T>(name)
     }
 
     private async GetConnection(): Promise<Db> {
 
         const { MONGO_HOST, MONGO_SSL, MONGO_DATABASE, MONGO_USER, MONGO_PASSWORD } = process.env
-        let uri = `mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOST}/${MONGO_DATABASE}?retryWrites=true&w=majority&${MONGO_SSL}`;
+        const uri = `mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOST}/${MONGO_DATABASE}?retryWrites=true&w=majority&${MONGO_SSL}`;
 
         try {
 
@@ -34,11 +34,11 @@ export class MongoDbContext {
         }
     }
 
-    public async Connect() {
+    public async Connect(): Promise<void> {
         const { MONGO_HOST, MONGO_SSL, MONGO_DATABASE, MONGO_USER, MONGO_PASSWORD } = process.env
-        let uri = `mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOST}/${MONGO_DATABASE}?retryWrites=true&w=majority&${MONGO_SSL}`;
+        const uri = `mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOST}/${MONGO_DATABASE}?retryWrites=true&w=majority&${MONGO_SSL}`;
 
-        let client = await MongoClient.connect(
+        const client = await MongoClient.connect(
             uri,
             {
                 useNewUrlParser: true,

@@ -19,7 +19,7 @@ const EntityTypes = {
     UserSession: "UserSession",
 }
 
-let TYPES = {
+const TYPES = {
     ...RepositoryTypes,
     ...UseCaseTypes,
     ...ProviderTypes,

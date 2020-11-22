@@ -16,7 +16,7 @@ before(async () => {
     await container.loadAsync(bindings)
     loginUsecase = container.get<ILoginUseCase>(TYPES.LoginUseCase)
 
-    let signInUseCase = container.get<ISignInUseCase>(TYPES.SignInUseCase)
+    const signInUseCase = container.get<ISignInUseCase>(TYPES.SignInUseCase)
     await signInUseCase.Execute({
         name: "teste",
         email: "teste@teste.com",
@@ -60,7 +60,7 @@ describe('LoginUseCase', () => {
     })
 
     it('should authenticate user', async () => {
-        let res = await loginUsecase.Execute({
+        await loginUsecase.Execute({
             email: "teste@teste.com",
             password: "teste1234"
         })

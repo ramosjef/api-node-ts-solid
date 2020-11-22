@@ -4,10 +4,11 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "tsnd --transpile-only --respawn --ignore-watch node_modules -r tsconfig-paths/register src/server.ts",
+    "start": "yarn lint && tsnd --transpile-only --respawn --ignore-watch node_modules -r tsconfig-paths/register src/server.ts",
     "test": "mocha -r ts-node/register --require reflect-metadata/Reflect **/**/*.spec.ts -r tsconfig-paths/register --timeout 10000",
-    "build": "tsc",
-    "doc": "apidoc -i src/ -o doc/"
+    "build": "yarn lint && tsc",
+    "doc": "apidoc -i src/ -o doc/",
+    "lint": "eslint . --ext .ts"
   },
   "dependencies": {
     "bcrypt": "^5.0.0",
@@ -36,8 +37,11 @@
     "@types/mongodb": "^3.5.31",
     "@types/morgan": "^1.9.2",
     "@types/nodemailer": "^6.4.0",
+    "@typescript-eslint/eslint-plugin": "^4.8.1",
+    "@typescript-eslint/parser": "^4.8.1",
     "apidoc": "^0.25.0",
     "chai": "^4.2.0",
+    "eslint": "^7.14.0",
     "mocha": "^8.1.2",
     "nyc": "^15.1.0",
     "ts-node-dev": "^1.0.0-pre.60",

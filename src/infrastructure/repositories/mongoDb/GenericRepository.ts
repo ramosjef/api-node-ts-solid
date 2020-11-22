@@ -18,25 +18,25 @@ export class GenericRepository<T extends { id?: string, _id?: string }> implemen
     }
 
     public async Find(query: any): Promise<T> {
-        let collection = await this.DbSet()
-        let cursor = collection.find(query as FilterQuery<T>);
-        let result = await cursor.toArray();
+        const collection = await this.DbSet()
+        const cursor = collection.find(query as FilterQuery<T>);
+        const result = await cursor.toArray();
         return this._ReadMapper(result[0] ?? null);
     }
 
     public async Create(req: T): Promise<string> {
-        let collection = await this.DbSet();
-        let res = await collection.insertOne(req as OptionalId<T>)
+        const collection = await this.DbSet();
+        const res = await collection.insertOne(req as OptionalId<T>)
         return `${res.insertedId}`;
     }
 
     public async Update(entity: T): Promise<void> {
-        let collection = await this.DbSet();
+        const collection = await this.DbSet();
         await collection.updateOne({ _id: new Object(entity.id) }, { $set: entity })
     }
 
     public async Remove(entity: T): Promise<void> {
-        let collection = await this.DbSet();
+        const collection = await this.DbSet();
         collection.deleteOne({ _id: new Object(entity.id) })
     }
 

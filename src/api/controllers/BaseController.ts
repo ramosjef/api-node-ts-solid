@@ -9,7 +9,7 @@ export class BaseController extends BaseHttpController {
 
     protected handleError(error: Error): JsonResult {
 
-        let statusCode = this._GetErrorStatusCode(error);
+        const statusCode = this._GetErrorStatusCode(error);
 
         return this.json({
             message: error.message || 'Unexpected error.',

@@ -1,5 +1,5 @@
 import * as express from "express"
-import { controller, httpGet, httpPost, queryParam, request, response } from "inversify-express-utils";
+import { controller, httpGet, httpPost, interfaces, request } from "inversify-express-utils";
 import { inject } from "inversify";
 import { ISignInUseCase } from "@application/useCases/SignIn/ISignInUseCase";
 import TYPES from "@domain/core/constants/types";
@@ -52,7 +52,7 @@ export class UsersController extends BaseController {
      * Created
     */
     @httpPost('/signin')
-    async signin(@request() req: express.Request, @response() res: express.Response) {
+    async signin(@request() req: express.Request): Promise<interfaces.IHttpActionResult> {
         try {
 
             const { name, email, password } = req.body;
@@ -85,11 +85,11 @@ export class UsersController extends BaseController {
      * @apiUse Error401 
     */
     @httpPost('/login')
-    async login(@request() req: express.Request, @response() res: express.Response) {
+    async login(@request() req: express.Request): Promise<interfaces.IHttpActionResult> {
         try {
 
             const { email, password } = req.body
-            var response = await this._loginUseCase.Execute({ email, password })
+            const response = await this._loginUseCase.Execute({ email, password })
             return this.ok(response)
 
         } catch (err) {
@@ -120,17 +120,17 @@ export class UsersController extends BaseController {
      * ]
     */
     @httpGet('/')
-    async get() {
+    async get(): Promise<interfaces.IHttpActionResult> {
         try {
 
             if (!await this.httpContext.user.isAuthenticated())
                 throw new NotAuthenticatedException()
 
-            return [
+            return this.ok([
                 { Name: "Jeff" },
                 { Name: "Bob" },
                 { Name: "Myke" },
-            ]
+            ])
 
         } catch (err) {
             return this.handleError(err)

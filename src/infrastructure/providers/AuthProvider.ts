@@ -15,16 +15,13 @@ export class AuthProvider implements IAuthProvider {
     @authService private readonly _usersRepository: IUsersRepository
     @inject(TYPES.UserSessionRepository) private readonly _userSessionsRepository: IUserSessionRepository
 
-    public async getUser(
-        req: express.Request,
-        res: express.Response,
-        next: express.NextFunction
-    ): Promise<interfaces.Principal> {
+    public async getUser(req: express.Request): Promise<interfaces.Principal> {
+
         const token = req.headers["x-auth-token"]
 
         if (token) {
 
-            var session = await this._userSessionsRepository.SelectByToken(`${token}`);
+            const session = await this._userSessionsRepository.SelectByToken(`${token}`);
             if (session) {
                 const user = await this._usersRepository.FindById(session.userId);
                 const principal = new Principal(user);
@@ -33,6 +30,5 @@ export class AuthProvider implements IAuthProvider {
         }
 
         return new Principal({});
-
     }
 }
