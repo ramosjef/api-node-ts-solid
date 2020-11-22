@@ -1,5 +1,5 @@
 import { interfaces } from "inversify-express-utils";
-import { User } from "../../users/User";
+import { User } from "@domain/users/User";
 
 export class Principal implements interfaces.Principal {
     details: User;

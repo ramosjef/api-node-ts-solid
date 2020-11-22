@@ -1,7 +1,7 @@
-import { ICreate } from "../core/interfaces/ICreate";
-import { IFindByEmail } from "../core/interfaces/IFindByEmail";
-import { IFindById } from "../core/interfaces/IFindById";
-import { IUpdate } from "../core/interfaces/IUpdate";
+import { ICreate } from "@domain/core/interfaces/ICreate";
+import { IFindByEmail } from "@domain/core/interfaces/IFindByEmail";
+import { IFindById } from "@domain/core/interfaces/IFindById";
+import { IUpdate } from "@domain/core/interfaces/IUpdate";
 import { User } from "./User";
 
 export interface IUsersRepository extends

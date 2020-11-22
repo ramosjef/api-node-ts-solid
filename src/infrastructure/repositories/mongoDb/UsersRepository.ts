@@ -1,10 +1,10 @@
 import { inject, injectable } from "inversify";
 import { ObjectId } from "mongodb";
-import TYPES from "../../../domain/core/constants/types";
-import { User } from "../../../domain/users/User";
-import { IGenericRepository } from "../../../domain/core/interfaces/IGenericRepository";
-import { IGenericRepositoryFactory } from "../../../domain/core/interfaces/IGenericRepositoryFactory";
-import { IUsersRepository } from "../../../domain/users/IUsersRepository";
+import TYPES from "@domain/core/constants/types";
+import { User } from "@domain/users/User";
+import { IGenericRepository } from "@domain/core/interfaces/IGenericRepository";
+import { IGenericRepositoryFactory } from "@domain/core/interfaces/IGenericRepositoryFactory";
+import { IUsersRepository } from "@domain/users/IUsersRepository";
 
 @injectable()
 export class UsersRepository implements IUsersRepository {

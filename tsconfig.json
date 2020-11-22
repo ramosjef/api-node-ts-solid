@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es2017",
     "module": "commonjs",
-    "outDir": "out",
+    "outDir": "dist",
     "sourceMap": true,
     "allowJs": true,
     "strict": false,
@@ -18,7 +18,25 @@
     ],
     "moduleResolution": "node",
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "baseUrl": "src",
+    "paths": {
+      "@application/*": [
+        "application/*"
+      ],
+      "@config/*": [
+        "infrastructure/config/*"
+      ],
+      "@providers/*": [
+        "infrastructure/providers/*"
+      ],      
+      "@domain/*": [
+        "domain/*"
+      ],
+      "@repositories/*": [
+        "infrastructure/repositories/*"
+      ]
+    }
   },
   "include": [
     "src/**/*.ts"

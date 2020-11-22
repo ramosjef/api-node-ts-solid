@@ -1,8 +1,8 @@
 import { BaseHttpController } from "inversify-express-utils";
 import { JsonResult } from "inversify-express-utils/dts/results";
-import { NotAuthenticatedException } from "../../application/exceptions/NotAuthenticatedException";
-import { PasswordsDontMatchException } from "../../application/exceptions/PasswordsDontMatchException";
-import { UserNotFoundException } from "../../application/exceptions/UserNotFoundException";
+import { NotAuthenticatedException } from "@application/exceptions/NotAuthenticatedException";
+import { PasswordsDontMatchException } from "@application/exceptions/PasswordsDontMatchException";
+import { UserNotFoundException } from "@application/exceptions/UserNotFoundException";
 import { ValidationError } from 'joi'
 
 export class BaseController extends BaseHttpController {

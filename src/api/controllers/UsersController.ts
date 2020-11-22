@@ -1,11 +1,11 @@
 import * as express from "express"
 import { controller, httpGet, httpPost, queryParam, request, response } from "inversify-express-utils";
 import { inject } from "inversify";
-import { ISignInUseCase } from "../../application/useCases/SignIn/ISignInUseCase";
-import TYPES from "../../domain/core/constants/types";
-import { ILoginUseCase } from "../../application/useCases/Login/ILoginUseCase";
+import { ISignInUseCase } from "@application/useCases/SignIn/ISignInUseCase";
+import TYPES from "@domain/core/constants/types";
+import { ILoginUseCase } from "@application/useCases/Login/ILoginUseCase";
 import { BaseController } from "./BaseController";
-import { NotAuthenticatedException } from "../../application/exceptions/NotAuthenticatedException";
+import { NotAuthenticatedException } from "@application/exceptions/NotAuthenticatedException";
 
 @controller("/api/v1/users")
 export class UsersController extends BaseController {

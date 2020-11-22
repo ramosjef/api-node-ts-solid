@@ -1,7 +1,7 @@
 import { inject, injectable } from "inversify";
-import TYPES from "../../../domain/core/constants/types";
-import { IGenericRepository } from "../../../domain/core/interfaces/IGenericRepository";
-import { IGenericRepositoryFactory } from "../../../domain/core/interfaces/IGenericRepositoryFactory";
+import TYPES from "@domain/core/constants/types";
+import { IGenericRepository } from "@domain/core/interfaces/IGenericRepository";
+import { IGenericRepositoryFactory } from "@domain/core/interfaces/IGenericRepositoryFactory";
 import { GenericRepository } from "./GenericRepository";
 import { MongoDbContext } from "./context/MongoDbContext";
 

@@ -1,11 +1,11 @@
 import 'mocha'
 import { expect } from 'chai'
-import { ISignInUseCase } from '../../application/useCases/SignIn/ISignInUseCase';
-import { bindings } from '../../infrastructure/config/inversify.config.dev';
 import { Container } from 'inversify';
-import TYPES from '../../domain/core/constants/types';
-import { UserAlreadyExistsException } from '../../application/exceptions/UserAlreadyExistsException';
 import { ValidationError } from 'joi'
+import { ISignInUseCase } from '@application/useCases/SignIn/ISignInUseCase';
+import { UserAlreadyExistsException } from '@application/exceptions/UserAlreadyExistsException';
+import { bindings } from '@config/inversify.config.dev';
+import TYPES from '@domain/core/constants/types';
 
 let usecase: ISignInUseCase
 const container: Container = new Container()
