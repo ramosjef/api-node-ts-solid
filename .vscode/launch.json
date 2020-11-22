@@ -6,15 +6,21 @@
     "configurations": [
         {
             "type": "node",
+            "runtimeArgs": [
+                "-r",
+                "${workspaceFolder}/node_modules/ts-node/register",
+                "-r",
+                "${workspaceFolder}/node_modules/tsconfig-paths/register"
+            ],
             "request": "launch",
             "name": "Launch Program",
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\out\\server.js",
+            "program": "${workspaceFolder}\\dist\\server.js",
             "preLaunchTask": "tsc: build - tsconfig.json",
             "outFiles": [
-                "${workspaceFolder}/out/**/*.js"
+                "${workspaceFolder}/dist/**/*.js"
             ]
         }
     ]
