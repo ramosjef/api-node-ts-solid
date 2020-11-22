@@ -24,15 +24,15 @@ export class LoginUseCase implements ILoginUseCase {
 
         await LoginRequestValidation.validateAsync(_req);
 
-        let user = await this._usersRepository.FindByEmail(_req.email)
+        const user = await this._usersRepository.FindByEmail(_req.email)
         if (!user) throw new UserNotFoundException()
 
-        var doesPasswordMatch = await bcrypt.compare(_req.password, user.password)
+        const doesPasswordMatch = await bcrypt.compare(_req.password, user.password)
         if (!doesPasswordMatch) throw new PasswordsDontMatchException()
 
-        var token = this.GenerateToken({ id: user.id })
+        const token = this.GenerateToken({ id: user.id })
 
-        var userSession = new UserSession({
+        const userSession = new UserSession({
             ...token,
             expiresIn: new Date(token.expiresIn),
             userId: user.id,
@@ -44,9 +44,9 @@ export class LoginUseCase implements ILoginUseCase {
     }
 
     private GenerateToken(object: { id: string }): ILoginResponse {
-        let time = new Date().getTime() + (+process.env.TOKEN_EXPIRES_IN * 60 * 60 * 1000)
-        let expiresIn = new Date().setTime(time)
-        let token = jwt.sign(object, process.env.SECRET, { expiresIn: expiresIn })
+        const time = new Date().getTime() + (+process.env.TOKEN_EXPIRES_IN * 60 * 60 * 1000)
+        const expiresIn = new Date().setTime(time)
+        const token = jwt.sign(object, process.env.SECRET, { expiresIn: expiresIn })
 
         return {
             token,

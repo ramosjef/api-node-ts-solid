@@ -24,13 +24,13 @@ export class SignInUseCase implements ISignInUseCase {
 
         await SigninRequestValidation.validateAsync(request, {});
 
-        let userAreadyExists = await this._usersRepository.FindByEmail(request.email)
+        const userAreadyExists = await this._usersRepository.FindByEmail(request.email)
         if (userAreadyExists)
             throw new UserAlreadyExistsException()
 
         request.password = await this.CryptPassword(request.password)
 
-        let user = new User(request)
+        const user = new User(request)
         await this._usersRepository.Create(user)
     }
 

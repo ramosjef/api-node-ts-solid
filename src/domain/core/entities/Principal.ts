@@ -9,11 +9,11 @@ export class Principal implements interfaces.Principal {
     }
 
     isAuthenticated(): Promise<boolean> {
-        let res = (this.details && this.details.id != null && this.details.id != undefined);
+        const res = (this.details && this.details.id != null && this.details.id != undefined);
         return Promise.resolve(res)
     }
 
-    isResourceOwner(resourceId: any): Promise<boolean> {
+    isResourceOwner(resourceId: string): Promise<boolean> {
         return Promise.resolve(true)
     }
 

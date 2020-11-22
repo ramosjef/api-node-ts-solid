@@ -18,7 +18,7 @@ export class GenericRepository<T extends { id?: string }> implements IGenericRep
     }
 
     public Find(query: any): Promise<T> {
-        let result = this._Collection.find(query);
+        const result = this._Collection.find(query);
         return Promise.resolve(result);
     }
 
@@ -29,15 +29,15 @@ export class GenericRepository<T extends { id?: string }> implements IGenericRep
     }
 
     public Update(entity: T): Promise<void> {
-        let current = this._Collection.find(u => u.id == entity.id)
-        let idx = this._Collection.indexOf(current);
+        const current = this._Collection.find(u => u.id == entity.id)
+        const idx = this._Collection.indexOf(current);
         this._Collection.splice(idx, 1, entity);
         return Promise.resolve();
     }
 
     public Remove(entity: T): Promise<void> {
-        let current = this._Collection.find(u => u.id == entity.id)
-        let idx = this._Collection.indexOf(current);
+        const current = this._Collection.find(u => u.id == entity.id)
+        const idx = this._Collection.indexOf(current);
         this._Collection.splice(idx, 1);
         return Promise.resolve();
     }
